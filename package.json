@@ -1,0 +1,44 @@
+{
+  "name": "tmt88v-print",
+  "version": "1.0.0",
+  "description": "Print PNG images to Epson TM-T88V thermal printer via ESC/POS (direct to device, no CUPS)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "tmt88v-print": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "epson",
+    "tm-t88v",
+    "thermal",
+    "printer",
+    "escpos",
+    "receipt",
+    "pos"
+  ],
+  "author": "Pietro Leoni <pietro.leoni@gmail.com> (https://github.com/piLeoni)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/piLeoni/tmt88v-print"
+  },
+  "dependencies": {
+    "sharp": "^0.33.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ]
+}
