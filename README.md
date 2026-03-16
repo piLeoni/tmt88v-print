@@ -69,17 +69,16 @@ Printer is usually `/dev/usb/lp0`, `/dev/usb/lp1`, etc. Check with `ls /dev/usb/
 
 When printing to the device, data is sent in small chunks (e.g. 1 KB) with a short delay between chunks. There is **no handshake**: the app only writes to `/dev/usb/lp*`; the Linux `usblp` driver does not expose a “buffer ready” signal or reliable status readback. ESC/POS defines status commands (e.g. DLE EOT), but on USB they are typically not available to the application. So we use **fixed-rate throttling** (same chunk size and delay every time). It is deterministic: we never send more than X bytes per Y ms, which keeps the printer buffer from overflowing (avoids EIO) while keeping the stream smooth.
 
-## Local testing (no printer)
+## Example
 
-Generate a sample image and write ESC/POS to a file:
+Print the sample image (or use your own PNG):
 
 ```bash
 npm run build
-node examples/generate-sample.js
-node dist/cli.js examples/sample.png --output examples/out.bin
+node examples/print-sample.js
 ```
 
-See [examples/README.md](examples/README.md) for more options and API usage.
+Uses `printImage()` to send `examples/sample.png` to the default device (`/dev/usb/lp2`, or set `PRINTER_DEVICE`).
 
 ## Author
 
